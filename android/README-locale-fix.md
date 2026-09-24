@@ -48,3 +48,26 @@ The new package uses versionName `11.0-7.1.20260925-arm64ec`, versionCode 1,
 to coexist with the prior NULL-context package. The numeric suffix is intentional:
 Bannerlator's Wine version parser must still recognize the arm64ec architecture.
 Artifacts only; no release publication or automatic device installation.
+
+## Full package device validation (2026-09-25)
+
+GitHub Actions run `36033900270` successfully built commit
+`c653abb47edacda4b612b8c1eead248b79e30ac5`. The Proton WCP SHA-256 is
+`7f3a4d5bb0606bdd3d402fc4821d6d265d682f62df7247d1d674c6295b981a39`.
+The downloaded package matched this checksum and was installed in Bannerlator
+3.1.1 on an AYANEO Pocket S2 Pro running Android 14.
+
+A separate `Evoland-ZH-TW` container used this ARM64EC layer with FEXCore
+2609-2064 and `LC_ALL=zh_TW.UTF-8`. A Windows diagnostic executable reported:
+
+```
+SystemLocale=zh-TW
+UserLocale=zh-TW
+SystemLCID=0404 UserLCID=0404 ACP=950 OEMCP=950
+WINEUSERLOCALE=zh-TW
+```
+
+Evoland Legendary Edition launched through SteamLite using a cloned shortcut
+and displayed Traditional Chinese on both its title prompt and main menu.
+Validation stopped at the main menu; gameplay and long-session stability were
+not tested. The original game installation and old containers were retained.
