@@ -644,7 +644,12 @@ static BOOL unix_to_win_locale( const char *unix_name, char *win_name )
     char buffer[LOCALE_NAME_MAX_LENGTH];
     char *p, *country = NULL, *modifier = NULL;
 
-    if (!unix_name || !unix_name[0] || !strcmp( unix_name, "C" ))
+    if (!unix_name || !unix_name[0] || !strcmp( unix_name, "C" )
+#ifdef __ANDROID__
+        /* Bionic returns C.UTF-8 for setlocale( category, "" ), ignoring LC_ALL. */
+        || !strcmp( unix_name, "C.UTF-8" )
+#endif
+       )
     {
         unix_name = getenv( "LC_ALL" );
         if (!unix_name || !unix_name[0]) return FALSE;
